@@ -18,15 +18,15 @@ export CC BIN OBJS_DIR BIN_DIR ROOT_DIR
 all:$(SUBDIRS) $(CUR_OBJS) DEBUG
 #递归执行子目录下的makefile文件，这是递归执行的关键
 $(SUBDIRS):ECHO
-    make -C $@
+	make -C $@
 DEBUG:ECHO
-    #直接去debug目录下执行makefile文件
-    make -C debug
+# 直接去debug目录下执行makefile文件
+	make -C debug
 ECHO:
-    @echo $(SUBDIRS)
+	@echo $(SUBDIRS)
 #将c文件编译为o文件，并放在指定放置目标文件的目录中即OBJS_DIR
 $(CUR_OBJS):%.o:%.c
-    $(CC) -c $^ -o $(ROOT_DIR)/$(OBJS_DIR)/$@
+	$(CC) -c $^ -o $(ROOT_DIR)/$(OBJS_DIR)/$@
 CLEAN:
-    @rm $(OBJS_DIR)/*.o
-    @rm -rf $(BIN_DIR)/*
+	@rm $(OBJS_DIR)/*.o
+	@rm -rf $(BIN_DIR)/*
