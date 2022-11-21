@@ -14,7 +14,7 @@ namespace CurrentThread {
 
     void cachedTid() {
         if (0 == g_cachedTid) {
-            g_cachedTid = static_cast<pid_t>(gettid());
+            g_cachedTid = static_cast<pid_t>(syscall(SYS_gettid));
         }
     }
 }

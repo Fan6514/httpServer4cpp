@@ -13,11 +13,6 @@
 #include <sys/types.h>
 #include "Util.h"
 
-#define gettid()\
-do {\
-    syscall(SYS_gettid);\
-} while(0)
-
 namespace CurrentThread {
     extern int g_cachedTid;
     void cacheTid();
