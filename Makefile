@@ -3,6 +3,7 @@ CC = g++
 # debug文件的makefile文件最后执行，获取所有除debug目录名，$9代表第九列，代表文件名
 SUBDIRS=$(shell ls -l | grep ^d | awk '{if($$9 != "debug" && $$9 != "test") print $$9}')
 ROOT_DIR = $(shell pwd)
+INCLUDE_DIR=$(-I$(ROOT_DIR)/lib -I$(ROOT_DIR)/lock -I$(ROOT_DIR)/thread)
 BIN = server
 # 目标文件目录
 OBJS_DIR = debug/obj
@@ -13,7 +14,7 @@ CUR_SOURCE = ${wildcard *.cpp}
 CUR_OBJS = ${patsubst %.cpp, %.o, $(CUR_SOURCE)}
 CFLAG = -I$(ROOT_DIR) -lpthread -Wall
 #将以下变量导出到子shell中，本次相当于导出到子目录下的makefile中
-export CC BIN CFLAG OBJS_DIR BIN_DIR ROOT_DIR
+export CC BIN CFLAG OBJS_DIR BIN_DIR ROOT_DIR INCLUDE_DIR
 #注意这里的顺序，需要先执行SUBDIRS最后才能是DEBUG
 all:$(SUBDIRS) $(CUR_OBJS) DEBUG
 #递归执行子目录下的makefile文件，这是递归执行的关键

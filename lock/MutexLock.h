@@ -37,10 +37,4 @@ private:
     MutexLock& mutex_;
 };
 
-/** @brief 防止遗漏变量名 */
-#define MutexLockGuard(x)\
-do {\
-    static_assert(false, "missing mutex guard var name");\
-} while(0)
-
 #endif
