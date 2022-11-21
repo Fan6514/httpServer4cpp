@@ -11,7 +11,7 @@ BIN_DIR = debug/bin
 CUR_SOURCE = ${wildcard *.cpp}
 # 将当前目录下的.cpp文件转为.o文件放在CUR_SOURCE中
 CUR_OBJS = ${patsubst %.cpp, %.o, $(CUR_SOURCE)}
-CFLAG = -I$(ROOT_DIR) -I$(SUBDIRS) -Wall
+CFLAG = -I$(ROOT_DIR) -lpthread -Wall
 #将以下变量导出到子shell中，本次相当于导出到子目录下的makefile中
 export CC BIN CFLAG OBJS_DIR BIN_DIR ROOT_DIR
 #注意这里的顺序，需要先执行SUBDIRS最后才能是DEBUG

@@ -20,7 +20,7 @@ public:
     void notify();
     void notifyAll();
 private:
-    MutexLock& mutex;
+    MutexLock& mutex_;
     pthread_cond_t pcond_;
 };
 
