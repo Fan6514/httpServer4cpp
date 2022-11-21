@@ -1,7 +1,7 @@
 # 设置编译器
 CC = g++
 # debug文件的makefile文件最后执行，获取所有除debug目录名，$9代表第九列，代表文件名
-SUBDIRS=$(shell ls -l | grep ^d | awk '{if($9 != "debug" && $9 != "test") print $9}')
+SUBDIRS=$(shell ls -l | grep ^d | awk '{if($$9 != "debug" && $$9 != "test") print $$9}')
 ROOT_DIR = $(shell pwd)
 BIN = server
 # 目标文件目录
