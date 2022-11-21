@@ -6,7 +6,7 @@ CUR_OBJS=${patsubst %.cpp, %.o, $(CUR_SOURCE)}
 all:$(SUBDIRS) $(CUR_OBJS)
 $(SUBDIRS):ECHO
 	make -C $@
-$(CUR_OBJS):%.o:%.c
-	$(CC) -c $^ -o $(ROOT_DIR)/$(OBJS_DIR)/$@
+$(CUR_OBJS):%.o:%.cpp
+	$(CC) -c $(CFLAG) $^ -o $(ROOT_DIR)/$(OBJS_DIR)/$@
 ECHO:
 	@echo $(SUBDIRS)
