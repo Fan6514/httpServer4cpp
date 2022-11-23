@@ -11,15 +11,17 @@
 
 #include <pthread.h>
 #include <sys/types.h>
+#include <sys/syscall.h>
+#include <unistd.h>
 #include "Util.h"
 
 namespace CurrentThread {
     extern int g_cachedTid;
-    void cacheTid();
+    void cachedTid();
 
     inline int tid() {
         if (unlikely(g_cachedTid == 0)) {
-            cacheTid();
+            cachedTid();
         }
         return g_cachedTid;
     }
