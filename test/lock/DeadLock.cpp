@@ -17,7 +17,7 @@ Inventory g_inventory;
 Request::~Request() {
     MutexLockGuard lock(mutex_);
     sleep(1);
-    g_inventory.remove(this);
+    g_inventory.remove(this);// 先Request加锁，然后Inventory加锁
 }
 
 void Request::process() {
@@ -45,7 +45,7 @@ void Inventory::printAll() {
     for (std::set<Request*>::const_iterator it = requests_.begin();
         it != requests_.end(); ++it)
     {
-        (*it)->print();
+        (*it)->print();//先Inventory加锁，然后Request加锁
     }
     std::cout << "Inventory::printAll() unlocked\n";
 }
